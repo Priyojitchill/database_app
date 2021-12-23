@@ -1,5 +1,6 @@
 import 'package:final_ui/src/screens/display.dart';
 import 'package:final_ui/src/screens/login.dart';
+import 'package:final_ui/src/screens/scream.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -63,27 +64,25 @@ class _StoreScreenState extends State<StoreScreen> {
               "Select Date of Birth",
             ),
           ),
-          Material(
-            child: DropdownButton<String>(
-              value: dropDownValue,
-              dropdownColor: Colors.blue,
-              icon: Icon(Icons.keyboard_arrow_down_rounded),
-              items: genderValues
-                  .map<DropdownMenuItem<String>>((String valueItem) {
-                return DropdownMenuItem<String>(
-                  value: valueItem,
-                  child: Text(valueItem),
-                );
-              }).toList(),
-              onChanged: (String? value) {
-                setState(
-                  () {
-                    dropDownValue = value!;
-                    //print("$_gender");
-                  },
-                );
-              },
-            ),
+          DropdownButton<String>(
+            value: dropDownValue,
+            dropdownColor: Colors.blue,
+            icon: Icon(Icons.keyboard_arrow_down_rounded),
+            items:
+                genderValues.map<DropdownMenuItem<String>>((String valueItem) {
+              return DropdownMenuItem<String>(
+                value: valueItem,
+                child: Text(valueItem),
+              );
+            }).toList(),
+            onChanged: (String? value) {
+              setState(
+                () {
+                  dropDownValue = value!;
+                  //print("$_gender");
+                },
+              );
+            },
           ),
           ElevatedButton(
             onPressed: getDropDownItem,
@@ -100,7 +99,7 @@ class _StoreScreenState extends State<StoreScreen> {
               );
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => StoreScreen(),
+                  builder: (context) => HomeScreen(),
                 ),
               );
             },
